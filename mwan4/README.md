@@ -120,6 +120,53 @@ config interface 'wan'
 	list flush_conntrack 'ifdown'
 ```
 
+### Dual-Stack Configuration Example
+
+Here's a complete example showing how to configure a dual-stack WAN interface with both IPv4 and IPv6:
+
+```
+config interface 'wan'
+	option enabled '1'
+	list family 'ipv4'
+	list family 'ipv6'
+	list track_ip '1.1.1.1'
+	list track_ip '8.8.8.8'
+	list track_ip '2606:4700:4700::1111'
+	list track_ip '2001:4860:4860::8888'
+	option reliability '2'
+	option count '1'
+	option timeout '2'
+	option interval '5'
+	option down '3'
+	option up '8'
+
+config member 'wan_m1_w1'
+	option interface 'wan'
+	option metric '1'
+	option weight '1'
+
+config policy 'balanced'
+	list use_member 'wan_m1_w1'
+
+config rule 'default_rule_v4'
+	option dest_ip '0.0.0.0/0'
+	option use_policy 'balanced'
+	option family 'ipv4'
+
+config rule 'default_rule_v6'
+	option dest_ip '::/0'
+	option use_policy 'balanced'
+	option family 'ipv6'
+```
+
+**How it works:**
+- The interface spawns two tracking instances: `track_wan_ipv4` and `track_wan_ipv6`
+- IPv4 track IPs (1.1.1.1, 8.8.8.8) are automatically used for IPv4 tracking
+- IPv6 track IPs (2606:..., 2001:...) are automatically used for IPv6 tracking
+- Each family maintains independent online/offline status
+- nftables chains are created per family: `mwan4_iface_in_wan_ipv4` and `mwan4_iface_in_wan_ipv6`
+- Status is reported separately per family: `mwan4 status` will show both
+
 ### Documentation
 
 For full mwan3 configuration documentation (still largely applicable):
