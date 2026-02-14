@@ -20,6 +20,7 @@ Currently supported dual-firmware devices include:
 - Linksys EA7300v2
 - Linksys EA7500v1
 - Linksys EA7500v2
+- Linksys EA7500v3
 - Linksys EA8100v1
 - Linksys EA8100v2
 - Linksys EA8300
@@ -33,6 +34,7 @@ Currently supported dual-firmware devices include:
 - Linksys MX4300
 - Linksys MX5300
 - Linksys MX5500
+- Linksys MX6200
 - Linksys SPNMX56
 - Linksys WHW01v1
 - Linksys WHW03v2
