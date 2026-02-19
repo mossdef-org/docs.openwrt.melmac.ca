@@ -13,120 +13,126 @@
 <!-- vscode-markdown-toc -->
 
 - [Policy-Based Routing OpenWrt Package Documentation](#policy-based-routing-openwrt-package-documentation)
-	- [Notable version changes](#notable-version-changes)
-		- [Relevant `pbr` version](#relevant-pbr-version)
-		- [Version 1.2.1](#version-121)
-		- [Version 1.2.0](#version-120)
-		- [Version 1.1.8](#version-118)
-	- [Description](#description)
-		- [Key Features](#key-features)
-	- [Features](#features)
-		- [Gateways/Tunnels](#gatewaystunnels)
-		- [Netifd integration](#netifd-integration)
-		- [IPv4/IPv6/Port-Based Policies](#ipv4ipv6port-based-policies)
-		- [Domain-Based Policies](#domain-based-policies)
-		- [Physical Device Policies](#physical-device-policies)
-		- [DSCP Tag-Based Policies](#dscp-tag-based-policies)
-		- [DNS Policies](#dns-policies)
-		- [Fw4 Nft File Mode](#fw4-nft-file-mode)
-		- [Custom User Files](#custom-user-files)
-		- [Strict Enforcement](#strict-enforcement)
-		- [Use Resolver's Set Support](#use-resolvers-set-support)
-			- [Use DNSMASQ nft sets Support](#use-dnsmasq-nft-sets-support)
-	- [Customization](#customization)
-	- [Other Features](#other-features)
-	- [Screenshots (luci-app-pbr)](#screenshots-luci-app-pbr)
-	- [How It Works](#how-it-works)
-		- [How It Works (`nft` mode)](#how-it-works-nft-mode)
-		- [Processing Policies](#processing-policies)
-			- [Processing Policies (`nft` mode)](#processing-policies-nft-mode)
-		- [Processing DNS Policies](#processing-dns-policies)
-			- [Processing DNS Policies (`nft` mode)](#processing-dns-policies-nft-mode)
-		- [Policies Priorities](#policies-priorities)
-		- [Processing Custom User Files](#processing-custom-user-files)
-			- [Processing Custom User Files (`nft` mode)](#processing-custom-user-files-nft-mode)
-	- [How To Install](#how-to-install)
-		- [How To Install - OpenWrt 23.05 and newer](#how-to-install---openwrt-2305-and-newer)
-		- [How To Install - OpenWrt 22.03 and older](#how-to-install---openwrt-2203-and-older)
-		- [Requirements](#requirements)
-		- [How to install dnsmasq-full](#how-to-install-dnsmasq-full)
-		- [Unmet dependencies](#unmet-dependencies)
-		- [How to upgrade to a most recent version](#how-to-upgrade-to-a-most-recent-version)
-	- [How to use](#how-to-use)
-		- [Helpful Instructional Videos](#helpful-instructional-videos)
-		- [Service Configuration Settings](#service-configuration-settings)
-		- [Default Settings](#default-settings)
-		- [Policy Options](#policy-options)
-		- [DNS Policy Options](#dns-policy-options)
-		- [Custom User Files Include Options](#custom-user-files-include-options)
-	- [Example Policies](#example-policies)
-		- [Single IP, IP Range, Local Machine, Local MAC Address](#single-ip-ip-range-local-machine-local-mac-address)
-		- [SIP Port](#sip-port)
-		- [Plex Media Server](#plex-media-server)
-		- [Emby Media Server](#emby-media-server)
-		- [Ignore Target](#ignore-target)
-			- [Ignore Requests](#ignore-requests)
-		- [Netflix Domains](#netflix-domains)
-		- [Example Custom User Files Includes](#example-custom-user-files-includes)
-	- [Example OpenWrt Configurations for More Complex Cases](#example-openwrt-configurations-for-more-complex-cases)
-		- [WireGuard Server Use Cases](#wireguard-server-use-cases)
-			- [WireGuard Server Use Case: Targeting in Policies](#wireguard-server-use-case-targeting-in-policies)
-			- [WireGuard Server Use Case: Disable IP Rule for WAN](#wireguard-server-use-case-disable-ip-rule-for-wan)
-			- [WireGuard Server Use Case: Targeting in Policies and Disable IP Rule for WAN](#wireguard-server-use-case-targeting-in-policies-and-disable-ip-rule-for-wan)
-		- [Basic OpenVPN Client Config](#basic-openvpn-client-config)
-		- [Multiple OpenVPN Clients](#multiple-openvpn-clients)
-		- [Local OpenVPN Server + OpenVPN Client (Scenario 1)](#local-openvpn-server--openvpn-client-scenario-1)
-		- [Local OpenVPN Server + OpenVPN Client (Scenario 2)](#local-openvpn-server--openvpn-client-scenario-2)
-	- [Footnotes/Known Issues](#footnotesknown-issues)
-	- [FAQ](#faq)
-		- [A Word About Default Routing](#a-word-about-default-routing)
-			- [OpenVPN tunnel configured via uci (/etc/config/openvpn)](#openvpn-tunnel-configured-via-uci-etcconfigopenvpn)
-			- [OpenVPN tunnel configured with .ovpn file](#openvpn-tunnel-configured-with-ovpn-file)
-			- [WireGuard tunnel](#wireguard-tunnel)
-		- [A Word About Cloudflare's 1.1.1.1 App](#a-word-about-cloudflares-1111-app)
-		- [A Word About DNS-over-HTTPS](#a-word-about-dns-over-https)
-		- [A Word About HTTP/3 (QUIC)](#a-word-about-http3-quic)
-		- [A Word About IPv6 Routing](#a-word-about-ipv6-routing)
-		- [A Word About Routing Netflix/Amazon Prime/Hulu Traffic](#a-word-about-routing-netflixamazon-primehulu-traffic)
-			- [Routing Netflix/Amazon Prime/Hulu Traffic via VPN Tunnel](#routing-netflixamazon-primehulu-traffic-via-vpn-tunnel)
-			- [Routing Netflix/Amazon Prime/Hulu Traffic via WAN](#routing-netflixamazon-primehulu-traffic-via-wan)
-		- [A Word About Interface Hotplug Script](#a-word-about-interface-hotplug-script)
-		- [A Word About Broken Domain Policies](#a-word-about-broken-domain-policies)
-		- [A Word About Compatibility With Other Policy Routing Services](#a-word-about-compatibility-with-other-policy-routing-services)
-	- [Getting Help](#getting-help)
-	- [First Troubleshooting Step](#first-troubleshooting-step)
-	- [Donate](#donate)
-	- [Error Messages Details](#error-messages-details)
-	- [Warning Messages Details](#warning-messages-details)
-		- [Warning: Please set 'dhcp.lan.force=1'](#warning-please-set-dhcplanforce1)
-		- [Warning: Internal Version Mismatch](#warning-internal-version-mismatch)
-		- [Warning: Incompatible DHCP Option 6](#warning-incompatible-dhcp-option-6)
-	- [Thanks](#thanks)
+  - [Notable version changes](#notable-version-changes)
+    - [Relevant `pbr` version](#relevant-pbr-version)
+    - [Version 1.2.3](#version-123)
+    - [Version 1.2.2](#version-122)
+    - [Version 1.2.0](#version-120)
+    - [Version 1.1.8](#version-118)
+  - [Description](#description)
+    - [Key Features](#key-features)
+  - [Features](#features)
+    - [Gateways/Tunnels](#gatewaystunnels)
+    - [Fw4 Include Nft File Mode](#fw4-include-nft-file-mode)
+    - [Routing Tables Modes](#routing-tables-modes)
+      - [Dynamic Routing Tables](#dynamic-routing-tables)
+      - [Netifd Integration](#netifd-integration)
+      - [Mwan4 Integration](#mwan4-integration)
+    - [IPv4/IPv6/Port-Based Policies](#ipv4ipv6port-based-policies)
+    - [Domain-Based Policies](#domain-based-policies)
+    - [Use Resolver's Set Support](#use-resolvers-set-support)
+      - [Use DNSMASQ nft sets Support](#use-dnsmasq-nft-sets-support)
+    - [Physical Device Policies](#physical-device-policies)
+    - [DSCP Tag-Based Policies](#dscp-tag-based-policies)
+    - [DNS Policies](#dns-policies)
+    - [Custom User Files](#custom-user-files)
+    - [Strict Enforcement](#strict-enforcement)
+  - [Customization](#customization)
+  - [Other Features](#other-features)
+  - [Screenshots (luci-app-pbr)](#screenshots-luci-app-pbr)
+  - [How It Works](#how-it-works)
+    - [How It Works (`nft` mode)](#how-it-works-nft-mode)
+    - [Processing Policies](#processing-policies)
+      - [Processing Policies (`nft` mode)](#processing-policies-nft-mode)
+    - [Processing DNS Policies](#processing-dns-policies)
+      - [Processing DNS Policies (`nft` mode)](#processing-dns-policies-nft-mode)
+    - [Policies Priorities](#policies-priorities)
+    - [Processing Custom User Files](#processing-custom-user-files)
+      - [Processing Custom User Files (`nft` mode)](#processing-custom-user-files-nft-mode)
+  - [How To Install](#how-to-install)
+    - [How To Install - OpenWrt 23.05 and newer](#how-to-install---openwrt-2305-and-newer)
+    - [How To Install - OpenWrt 22.03 and older](#how-to-install---openwrt-2203-and-older)
+    - [Requirements](#requirements)
+    - [How to install dnsmasq-full](#how-to-install-dnsmasq-full)
+    - [Unmet dependencies](#unmet-dependencies)
+    - [How to upgrade to a most recent version](#how-to-upgrade-to-a-most-recent-version)
+  - [How to use](#how-to-use)
+    - [Helpful Instructional Videos](#helpful-instructional-videos)
+    - [Service Configuration Settings](#service-configuration-settings)
+    - [Default Settings](#default-settings)
+    - [Policy Options](#policy-options)
+    - [DNS Policy Options](#dns-policy-options)
+    - [Custom User Files Include Options](#custom-user-files-include-options)
+  - [Example Policies](#example-policies)
+    - [Single IP, IP Range, Local Machine, Local MAC Address](#single-ip-ip-range-local-machine-local-mac-address)
+    - [SIP Port](#sip-port)
+    - [Plex Media Server](#plex-media-server)
+    - [Emby Media Server](#emby-media-server)
+    - [Ignore Target](#ignore-target)
+      - [Ignore Requests](#ignore-requests)
+    - [Netflix Domains](#netflix-domains)
+    - [Example Custom User Files Includes](#example-custom-user-files-includes)
+  - [Example OpenWrt Configurations for More Complex Cases](#example-openwrt-configurations-for-more-complex-cases)
+    - [WireGuard Server Use Cases](#wireguard-server-use-cases)
+      - [WireGuard Server Use Case: Targeting in Policies](#wireguard-server-use-case-targeting-in-policies)
+      - [WireGuard Server Use Case: Disable IP Rule for WAN](#wireguard-server-use-case-disable-ip-rule-for-wan)
+      - [WireGuard Server Use Case: Targeting in Policies and Disable IP Rule for WAN](#wireguard-server-use-case-targeting-in-policies-and-disable-ip-rule-for-wan)
+    - [Basic OpenVPN Client Config](#basic-openvpn-client-config)
+    - [Multiple OpenVPN Clients](#multiple-openvpn-clients)
+    - [Local OpenVPN Server + OpenVPN Client (Scenario 1)](#local-openvpn-server--openvpn-client-scenario-1)
+    - [Local OpenVPN Server + OpenVPN Client (Scenario 2)](#local-openvpn-server--openvpn-client-scenario-2)
+  - [Footnotes/Known Issues](#footnotesknown-issues)
+  - [FAQ](#faq)
+    - [A Word About Default Routing](#a-word-about-default-routing)
+      - [OpenVPN tunnel configured via uci (/etc/config/openvpn)](#openvpn-tunnel-configured-via-uci-etcconfigopenvpn)
+      - [OpenVPN tunnel configured with .ovpn file](#openvpn-tunnel-configured-with-ovpn-file)
+      - [WireGuard tunnel](#wireguard-tunnel)
+    - [A Word About Cloudflare's 1.1.1.1 App](#a-word-about-cloudflares-1111-app)
+    - [A Word About DNS-over-HTTPS](#a-word-about-dns-over-https)
+    - [A Word About HTTP/3 (QUIC)](#a-word-about-http3-quic)
+    - [A Word About IPv6 Routing](#a-word-about-ipv6-routing)
+    - [A Word About Routing Netflix/Amazon Prime/Hulu Traffic](#a-word-about-routing-netflixamazon-primehulu-traffic)
+      - [Routing Netflix/Amazon Prime/Hulu Traffic via VPN Tunnel](#routing-netflixamazon-primehulu-traffic-via-vpn-tunnel)
+      - [Routing Netflix/Amazon Prime/Hulu Traffic via WAN](#routing-netflixamazon-primehulu-traffic-via-wan)
+    - [A Word About Interface Hotplug Script](#a-word-about-interface-hotplug-script)
+    - [A Word About Broken Domain Policies](#a-word-about-broken-domain-policies)
+    - [A Word About Compatibility With Other Policy Routing Services](#a-word-about-compatibility-with-other-policy-routing-services)
+  - [Getting Help](#getting-help)
+  - [First Troubleshooting Step](#first-troubleshooting-step)
+  - [Donate](#donate)
+  - [Error Messages Details](#error-messages-details)
+  - [Warning Messages Details](#warning-messages-details)
+    - [Warning: Please set 'dhcp.lan.force=1'](#warning-please-set-dhcplanforce1)
+    - [Warning: Internal Version Mismatch](#warning-internal-version-mismatch)
+    - [Warning: Incompatible DHCP Option 6](#warning-incompatible-dhcp-option-6)
+  - [Thanks](#thanks)
 
 <!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
+  numbering=false
+  autoSave=true
+  /vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
 
 ## <a name='Notableversionchanges'></a>Notable version changes
 
 ### <a name='Relevantpbrversion'></a>Relevant `pbr` version
 
-This README is relevant for the `pbr` version 1.2.1. If you're looking for the README for the newer or older version of `pbr`, please check the README links within the `luci-app-pbr`.
+This README is relevant for the `pbr` version 1.2.3. If you're looking for the README for the newer or older version of `pbr`, please check the README links within the `luci-app-pbr`.
 
-### <a name='Version1.2.1'></a>Version 1.2.1
+### <a name='Version1.2.3'></a>Version 1.2.3
 
-- The pbr netifd integration requires following pbr optons to be set:
-  - `netifd_strict_enforcement`
-  - `netifd_interface_default`
-  - `netifd_interface_local`
-- More information on [netifd integration](#netifd-integration) below.
+- Most of the code transitioned to ucode.
+- This release will include support for mwan4 integration. More information on [mwan4 integration](#mwan4-integration) below.
+
+### <a name='Version1.2.2'></a>Version 1.2.2
+
+- Much improved/overhauled support for both dual-stack uplink interfaces (IPv4 and IPv6 addresses on the same interface) and split (separate `wan` and `wan6`) interfaces.
+- Preliminary support for netifd integration. More information on [netifd integration](#netifd-integration) below.
 
 ### <a name='Version1.2.0'></a>Version 1.2.0
 
 - Internal performance/reliability improvements, specifically boot-up start reliability on all platforms.
-- Drop the fw4 hotplug/trigger script due to use of fw4 nft file.
+- Drop the fw4 hotplug/trigger script due to the use of fw4 include nft file.
 - The `procd_lan_device` list renamed to `lan_device`.
 - The `procd_wan_interface`/`procd_wan6_interface` options renamed to `uplink_interface`/`uplink_interface6` respectively.
 - The `wan_ip_rules_priority`/`wan_mark` options renamed to `uplink_ip_rules_priority`/`uplink_mark` respectively.
@@ -136,7 +142,7 @@ This README is relevant for the `pbr` version 1.2.1. If you're looking for the R
 ### <a name='Version1.1.8'></a>Version 1.1.8
 
 - This release completely drops the iptables/ipset (and resolvers using ipset) support.
-- This release uses the [fw4 nft file mode](#Fw4NftFileMode) by default.
+- This release uses the [fw4 include nft file](#Fw4IncludeNftFileMode) by default.
 - The Wireguard Server & Client user script integrated into the `pbr` service, if Wireguard servers are discovered, their routing is automatically configured to go over WAN.
 - To enable targeting a Wireguard server tunnel, explicitly add its interface name to [supported_interface option](#supported_interface).
 - If the directory `/etc/pbr.d/` exists, all the files in that directory are processed as [custom user files](#CustomUserFiles) without the need to add them to `pbr` config.
@@ -158,7 +164,7 @@ This package provides flexible, rule-based routing for OpenWrt — allowing you 
 
 ### <a name='GatewaysTunnels'></a>Gateways/Tunnels
 
-- Any policy can target either WAN or a VPN tunnel interface.
+- Policies can target either WAN or a VPN tunnel interfaces (uplink interface can be overridden).
 - L2TP tunnels supported (with protocol names l2tp\*).
 - OpenConnect tunnels supported (with protocol names openconnect\*).
 - OpenVPN tunnels supported (with device names tun\*).[<sup>#1</sup>](#footnote1) [<sup>#2</sup>](#footnote2)
@@ -167,9 +173,25 @@ This package provides flexible, rule-based routing for OpenWrt — allowing you 
 - Tor tunnels supported in nft mode only (interface name must match tor).
 - Wireguard tunnels supported (with protocol names wireguard\*).
 
-### Netifd integration
+### <a name='Fw4IncludeNftFileMode'></a>Fw4 Include Nft File Mode
 
-From version 1.2.1, the `pbr` package can integrate better with netifd-capable interfaces, requiring no reload/restart when such interfaces are updated.
+In this mode instead of translating each policy into one (or a few) nft commands and running them individually, in this mode, `pbr` creates a single fw4 include nft file (temporary file located at `/var/run/pbr.nft` and if it contains no errors, the permanent file is installed at `/usr/share/nftables.d/ruleset-post/30-pbr.nft`). This file contains all the nft commands that `pbr` service needs to set up all the policies, dns policies and process custom user files. On any OpenWrt firewall (`fw4`) reload, this file is automatically included without the need to run the `pbr` init script again.
+
+### Routing Tables Modes
+
+The `pbr` package supports three routing table modes, which determine how routing tables and marking chains are managed:
+
+- [Dynamic Routing Tables](#dynamic-routing-tables): the `pbr` package manages its own routing tables and marking chains, all within the single fw4 include nft file it creates. This is the default/fallback mode.
+- [Netifd Extensions/Integration](#netifd-integration): the `pbr` package delegates routing table and marking chain management to OpenWrt's `netifd` daemon via a separate fw4 include nft file that never needs updating.
+- [Mwan4 Integration](#mwan4-integration): the `pbr` package uses routing tables and marking chains created by the `mwan4` package, and can target `mwan4` strategy elements in addition to interfaces.
+
+#### Dynamic Routing Tables
+
+In this mode, `pbr` is triggered on each supported interface action (up/down/update) to create/update the relevant routing table depending on the interface status. Due to the use of the fw4 include nft file, no iteration over policies is needed on interface actions, however [Netifd Extensions/Integration](#netifd-integration) offers better performance with a more elegant OpenWrt-native solution and [Mwan4 Integration](#mwan4-integration) adds multi-WAN failover/load balancing with strategy-based policy targets.
+
+#### Netifd Integration
+
+From version 1.2.2, the `pbr` package can integrate better with netifd-capable interfaces, requiring no reload/restart when such interfaces are updated.
 
 To enable netifd integration (or netifd extensions), do the following:
 
@@ -178,7 +200,7 @@ To enable netifd integration (or netifd extensions), do the following:
    ```sh
    uci set pbr.config.netifd_strict_enforcement=1
    uci set pbr.config.netifd_interface_default=wan
-   uci set pbr.config.netifd_interface_local=lan # use set or add_list to add multiple local interfaces like lan, guest, iot, kids, etc.
+   uci add_list pbr.config.netifd_interface_local=lan # supports multiple local interfaces like lan, guest, iot, kids, etc.
    uci set pbr.config.netifd_enabled=1
    uci commit pbr
    ```
@@ -235,6 +257,16 @@ TODO:
 - WebUI: add UE to install netifd support
 - WebUI: add UE to detect the reasons to reinstall netifd support
 
+#### Mwan4 Integration
+
+When the `mwan4` package is installed and running, `pbr` automatically detects it and operates in mwan4 integration mode. In this mode:
+
+- Routing tables and marking chains are fully managed by `mwan4` -- `pbr` reads the existing marks from `mwan4`'s fw4 include nft file rather than creating its own.
+- In addition to targeting individual interfaces, `pbr` policies can target `mwan4` strategy elements (e.g., load balancing or failover groups), combining `pbr`'s flexible policy matching with `mwan4`'s multi-WAN capabilities.
+- On service stop, `pbr` leaves `mwan4`'s marking chains intact since they are owned by `mwan4`.
+
+No additional configuration is needed -- if `mwan4` is running, `pbr` will use it automatically.
+
 ### <a name='IPv4IPv6Port-BasedPolicies'></a>IPv4/IPv6/Port-Based Policies
 
 - Policies based on local names, IPs or subnets. You can specify a single IP (as in `192.168.1.70`) or a local subnet (as in `192.168.1.81/29`) or a local device name (as in `nexusplayer`). IPv6 addresses are also supported.
@@ -248,6 +280,15 @@ TODO:
 
 - Policies based on (remote) domain names can be processed in different ways. Please review the [Policy Options](#PolicyOptions) section and [Footnotes/Known Issues](#FootnotesKnownIssues) section, specifically [<sup>#5</sup>](#footnote5) and any other information in that section relevant to domain-based routing/DNS.
 
+### <a name='UseResolversSetSupport'></a>Use Resolver's Set Support
+
+- If supported on the system, service can be set to utilize resolver's set support. Currently supported resolver's set options are listed below.
+
+#### <a name='UseDNSMASQnftsetsSupport'></a>Use DNSMASQ nft sets Support
+
+- The `pbr` package can be configured to utilize `dnsmasq`'s `nft` `sets` support, which requires the `dnsmasq-full` package with `nft` `sets` support to be installed (see [How to install dnsmasq-full](#Howtoinstalldnsmasq-full)). This significantly improves the start up time because `dnsmasq` resolves the domain names and adds them to the appropriate `nft` `set` in background. `dnsmasq`'s `nft` `set` also automatically adds third-level domains to the `set`: if `domain.com` is added to the policy, this policy will affect all `*.domain.com` subdomains. This also works for top-level domains (TLDs) as well, a policy targeting the `at` TLD for example, will affect all the `*.at` domains.
+- Please review the [Footnotes/Known Issues](#FootnotesKnownIssues) section, specifically [<sup>#5</sup>](#footnote5) and [<sup>#7</sup>](#footnote7) and any other information in that section relevant to domain-based routing/DNS.
+
 ### <a name='PhysicalDevicePolicies'></a>Physical Device Policies
 
 - Policies based on a local physical device (like a specially created wlan). Please review the [Policy Options](#PolicyOptions) section and [Footnotes/Known Issues](#FootnotesKnownIssues) section, specifically [<sup>#6</sup>](#footnote6) and any other information in that section relevant to handling physical device.
@@ -259,10 +300,6 @@ You can also set policies for traffic with a specific DSCP tag. On Windows 10, f
 ### <a name='DNSPolicies'></a>DNS Policies
 
 Use of DNS Policies allows to route the name resolution (DNS) requests from local devices/IP addresses or MAC addresses thru a specific DNS server. Either the first DNS server from a specified interface or a specific DNS server indicated by its IP address can be used. Please note that the use of DNS Policies will override local DNS Hijacking (if enabled) and also will prevent the domain-based policies from working for the local devices specified in the DNS Policy, as your `dnsmasq` will not be queried by those local devices anymore.
-
-### <a name='Fw4NftFileMode'></a>Fw4 Nft File Mode
-
-This mode is the only operating mode in version 1.1.7. Instead of translating each policy into one (or a few) nft commands and running them individually, in this mode, `pbr` creates a single atomic nft file (temporary file located at `/var/run/pbr.nft` and if it contains no errors, the permanent file is installed at `/usr/share/nftables.d/ruleset-post/30-pbr.nft`), containing all the nft commands that `pbr` service needs to set up all the policies, dns policies and process custom user files. This file is then just reloaded on any OpenWrt firewall (`fw4`) reload, without the need to run the `pbr` init script again.
 
 ### <a name='CustomUserFiles'></a>Custom User Files
 
@@ -279,15 +316,6 @@ If you want to create your own custom user files, please refer to [Processing Cu
 ### <a name='StrictEnforcement'></a>Strict Enforcement
 
 - Supports strict policy enforcement, even if the policy interface is down -- resulting in network being unreachable for specific policy (enabled by default).
-
-### <a name='UseResolversSetSupport'></a>Use Resolver's Set Support
-
-- If supported on the system, service can be set to utilize resolver's set support. Currently supported resolver's set options are listed below.
-
-#### <a name='UseDNSMASQnftsetsSupport'></a>Use DNSMASQ nft sets Support
-
-- The `pbr` package can be configured to utilize `dnsmasq`'s `nft` `sets` support, which requires the `dnsmasq-full` package with `nft` `sets` support to be installed (see [How to install dnsmasq-full](#Howtoinstalldnsmasq-full)). This significantly improves the start up time because `dnsmasq` resolves the domain names and adds them to the appropriate `nft` `set` in background. `dnsmasq`'s `nft` `set` also automatically adds third-level domains to the `set`: if `domain.com` is added to the policy, this policy will affect all `*.domain.com` subdomains. This also works for top-level domains (TLDs) as well, a policy targeting the `at` TLD for example, will affect all the `*.at` domains.
-- Please review the [Footnotes/Known Issues](#FootnotesKnownIssues) section, specifically [<sup>#5</sup>](#footnote5) and [<sup>#7</sup>](#footnote7) and any other information in that section relevant to domain-based routing/DNS.
 
 ## <a name='Customization'></a>Customization
 
@@ -521,29 +549,29 @@ The following policies route traffic from a single IP address, a range of IP add
 
 ```text
 config policy
-	option name 'Local IP'
-	option interface 'wan'
-	option src_addr '192.168.1.70'
+  option name 'Local IP'
+  option interface 'wan'
+  option src_addr '192.168.1.70'
 
 config policy
-	option name 'Local Subnet'
-	option interface 'wan'
-	option src_addr '192.168.1.81/29'
+  option name 'Local Subnet'
+  option interface 'wan'
+  option src_addr '192.168.1.81/29'
 
 config policy
-	option name 'Local Machine'
-	option interface 'wan'
-	option src_addr 'dell-ubuntu'
+  option name 'Local Machine'
+  option interface 'wan'
+  option src_addr 'dell-ubuntu'
 
 config policy
-	option name 'Local MAC Address'
-	option interface 'wan'
-	option src_addr '00:0F:EA:91:04:08'
+  option name 'Local MAC Address'
+  option interface 'wan'
+  option src_addr '00:0F:EA:91:04:08'
 
 config policy
-	option name 'Local Devices'
-	option interface 'wan'
-	option src_addr '192.168.1.70 192.168.1.81/29 dell-ubuntu 00:0F:EA:91:04:08'
+  option name 'Local Devices'
+  option interface 'wan'
+  option src_addr '192.168.1.70 192.168.1.81/29 dell-ubuntu 00:0F:EA:91:04:08'
 
 ```
 
@@ -553,10 +581,10 @@ The following policy routes standard SIP port traffic via WAN for both TCP and U
 
 ```text
 config policy
-	option name 'SIP Ports'
-	option interface 'wan'
-	option dest_port '5060'
-	option proto 'tcp udp'
+  option name 'SIP Ports'
+  option interface 'wan'
+  option dest_port '5060'
+  option proto 'tcp udp'
 ```
 
 ### <a name='PlexMediaServer'></a>Plex Media Server
@@ -565,14 +593,14 @@ The following policies route Plex Media Server traffic via WAN. Please note, you
 
 ```text
 config policy
-	option name 'Plex Local Server'
-	option interface 'wan'
-	option src_port '32400'
+  option name 'Plex Local Server'
+  option interface 'wan'
+  option src_port '32400'
 
 config policy
-	option name 'Plex Remote Servers'
-	option interface 'wan'
-	option dest_addr 'plex.tv my.plexapp.com'
+  option name 'Plex Remote Servers'
+  option interface 'wan'
+  option dest_addr 'plex.tv my.plexapp.com'
 ```
 
 ### <a name='EmbyMediaServer'></a>Emby Media Server
@@ -581,14 +609,14 @@ The following policy route Emby traffic via WAN. Please note, you'd still need t
 
 ```text
 config policy
-	option name 'Emby Local Server'
-	option interface 'wan'
-	option src_port '8096 8920'
+  option name 'Emby Local Server'
+  option interface 'wan'
+  option src_port '8096 8920'
 
 config policy
-	option name 'Emby Remote Servers'
-	option interface 'wan'
-	option dest_addr 'emby.media app.emby.media tv.emby.media'
+  option name 'Emby Remote Servers'
+  option interface 'wan'
+  option dest_addr 'emby.media app.emby.media tv.emby.media'
 ```
 
 ### <a name='IgnoreTarget'></a>Ignore Target
@@ -601,13 +629,13 @@ The following policy allows you to skip processing some requests (like traffic t
 
 ```text
 config pbr 'config'
-	...
-	option webui_show_ignore_target '1'
+  ...
+  option webui_show_ignore_target '1'
 
 config policy
-	option name 'Ignore Local Requests by Destination'
-	option interface 'ignore'
-	option dest_addr '192.168.200.0/24'
+  option name 'Ignore Local Requests by Destination'
+  option interface 'ignore'
+  option dest_addr '192.168.200.0/24'
 ```
 
 Please note, you need to enable `Show Ignore Target` option for the WebUI to list`ignore\` in the list of gateways.
@@ -620,25 +648,25 @@ The following policy should route US Netflix traffic via WAN. For capturing inte
 
 ```text
 config policy
-	option name 'Netflix Domains'
-	option interface 'wan'
-	option dest_addr 'amazonaws.com netflix.com nflxext.com nflximg.net nflxso.net nflxvideo.net dvd.netflix.com'
+  option name 'Netflix Domains'
+  option interface 'wan'
+  option dest_addr 'amazonaws.com netflix.com nflxext.com nflximg.net nflxso.net nflxvideo.net dvd.netflix.com'
 ```
 
 ### <a name='ExampleCustomUserFilesIncludes'></a>Example Custom User Files Includes
 
 ```text
 config include
-        option path '/usr/share/pbr/pbr.user.dnsprefetch'
-        option enabled '0'
+  option path '/usr/share/pbr/pbr.user.dnsprefetch'
+  option enabled '0'
 
 config include
-	option path '/usr/share/pbr/pbr.user.aws'
-	option enabled '0'
+  option path '/usr/share/pbr/pbr.user.aws'
+  option enabled '0'
 
 config include
-	option path '/usr/share/pbr/pbr.user.netflix'
-	option enabled '0'
+  option path '/usr/share/pbr/pbr.user.netflix'
+  option enabled '0'
 ```
 
 ## <a name='ExampleOpenWrtConfigurationsforMoreComplexCases'></a>Example OpenWrt Configurations for More Complex Cases
@@ -676,8 +704,8 @@ Relevant part of `/etc/config/pbr`:
 
 ```text
 config pbr 'config'
-	list supported_interface 'vpnclient'
-	...
+  list supported_interface 'vpnclient'
+  ...
 ```
 
 The recommended network/firewall settings are below.
@@ -686,29 +714,29 @@ Relevant part of `/etc/config/network` (**DO NOT** modify default OpenWrt networ
 
 ```text
 config interface 'vpnclient'
-	option proto 'none'
-	option device 'ovpnc0'
+  option proto 'none'
+  option device 'ovpnc0'
 ```
 
 Relevant part of `/etc/config/firewall`:
 
 ```text
 config zone
-	option name 'wan'
-	list network 'wan'
-	list network 'vpnclient'
-	...
+  option name 'wan'
+  list network 'wan'
+  list network 'vpnclient'
+  ...
 ```
 
 Relevant part of `/etc/config/openvpn` (configure the rest of the client connection for your specifics by either referring to an existing `.ovpn` file or thru the OpenWrt uci settings):
 
 ```text
 config openvpn 'vpnclient'
-	option enabled '1'
-	option client '1'
-	option dev_type 'tun'
-	option dev 'ovpnc0'
-	...
+  option enabled '1'
+  option client '1'
+  option dev_type 'tun'
+  option dev 'ovpnc0'
+  ...
 ```
 
 ### <a name='MultipleOpenVPNClients'></a>Multiple OpenVPN Clients
@@ -719,36 +747,36 @@ For `/etc/config/network`:
 
 ```text
 config interface 'vpnclient0'
-	option proto 'none'
-	option device 'ovpnc0'
+  option proto 'none'
+  option device 'ovpnc0'
 
 config interface 'vpnclient1'
-	option proto 'none'
-	option device 'ovpnc1'
+  option proto 'none'
+  option device 'ovpnc1'
 ```
 
 For `/etc/config/openvpn`:
 
 ```text
 config openvpn 'vpnclient0'
-	option client '1'
-	option dev_type 'tun'
-	option dev 'ovpnc0'
-	...
+  option client '1'
+  option dev_type 'tun'
+  option dev 'ovpnc0'
+  ...
 
 config openvpn 'vpnclient1'
-	option client '1'
-	option dev_type 'tun'
-	option dev 'ovpnc1'
-	...
+  option client '1'
+  option dev_type 'tun'
+  option dev 'ovpnc1'
+  ...
 ```
 
 For `/etc/config/pbr`:
 
 ```text
 config pbr 'config'
-	list supported_interface 'vpnclient0 vpnclient1'
-	...
+  list supported_interface 'vpnclient0 vpnclient1'
+  ...
 ```
 
 ### <a name='LocalOpenVPNServerOpenVPNClientScenario1'></a>Local OpenVPN Server + OpenVPN Client (Scenario 1)
@@ -759,15 +787,15 @@ Relevant part of `/etc/config/pbr`:
 
 ```text
 config pbr 'config'
-	list ignored_interface 'vpnserver'
-	...
+  list ignored_interface 'vpnserver'
+  ...
 
 config policy
-	option name 'OpenVPN Server'
-	option interface 'wan'
-	option proto 'tcp'
-	option src_port '1194'
-	option chain 'output'
+  option name 'OpenVPN Server'
+  option interface 'wan'
+  option proto 'tcp'
+  option src_port '1194'
+  option chain 'output'
 ```
 
 The network/firewall/openvpn settings are below.
@@ -776,54 +804,54 @@ Relevant part of `/etc/config/network` (**DO NOT** modify default OpenWrt networ
 
 ```text
 config interface 'vpnclient'
-	option proto 'none'
-	option device 'ovpnc0'
+  option proto 'none'
+  option device 'ovpnc0'
 
 config interface 'vpnserver'
-	option proto 'none'
-	option device 'ovpns0'
-	option auto '1'
+  option proto 'none'
+  option device 'ovpns0'
+  option auto '1'
 ```
 
 Relevant part of `/etc/config/firewall`:
 
 ```text
 config zone
-	option name 'lan'
-	list network 'lan'
-	list network 'vpnserver'
-	...
+  option name 'lan'
+  list network 'lan'
+  list network 'vpnserver'
+  ...
 
 config zone
-	option name 'wan'
-	list network 'wan'
-	list network 'vpnclient'
-	...
+  option name 'wan'
+  list network 'wan'
+  list network 'vpnclient'
+  ...
 
 config rule
-	option name 'Allow-OpenVPN-Inbound'
-	option target 'ACCEPT'
-	option src '*'
-	option proto 'tcp'
-	option dest_port '1194'
+  option name 'Allow-OpenVPN-Inbound'
+  option target 'ACCEPT'
+  option src '*'
+  option proto 'tcp'
+  option dest_port '1194'
 ```
 
 Relevant part of `/etc/config/openvpn`:
 
 ```text
 config openvpn 'vpnclient'
-	option client '1'
-	option dev_type 'tun'
-	option dev 'ovpnc0'
-	option proto 'udp'
-	option remote 'some.domain.com 1197' # DO NOT USE PORT 1194 for VPN Client
-	...
+  option client '1'
+  option dev_type 'tun'
+  option dev 'ovpnc0'
+  option proto 'udp'
+  option remote 'some.domain.com 1197' # DO NOT USE PORT 1194 for VPN Client
+  ...
 
 config openvpn 'vpnserver'
-	option port '1194'
-	option proto 'tcp'
-	option server '192.168.200.0 255.255.255.0'
-	...
+  option port '1194'
+  option proto 'tcp'
+  option server '192.168.200.0 255.255.255.0'
+  ...
 ```
 
 ### <a name='LocalOpenVPNServerOpenVPNClientScenario2'></a>Local OpenVPN Server + OpenVPN Client (Scenario 2)
@@ -834,13 +862,13 @@ Relevant part of `/etc/config/pbr`:
 
 ```text
 config pbr 'config'
-	list ignored_interface 'vpnserver'
-	...
+  list ignored_interface 'vpnserver'
+  ...
 config policy
-	option name 'Ignore Local Traffic'
-	option interface 'ignore'
-	option dest_addr '192.168.200.0/24'
-	...
+  option name 'Ignore Local Traffic'
+  option interface 'ignore'
+  option dest_addr '192.168.200.0/24'
+  ...
 ```
 
 The network/firewall/openvpn settings are below.
@@ -849,56 +877,56 @@ Relevant part of `/etc/config/network` (**DO NOT** modify default OpenWrt networ
 
 ```text
 config interface 'vpnclient'
-	option proto 'none'
-	option device 'ovpnc0'
+  option proto 'none'
+  option device 'ovpnc0'
 
 config interface 'vpnserver'
-	option proto 'none'
-	option device 'ovpns0'
-	option auto '1'
+  option proto 'none'
+  option device 'ovpns0'
+  option auto '1'
 ```
 
 Relevant part of `/etc/config/firewall`:
 
 ```text
 config zone
-	option name 'lan'
-	list network 'lan'
-	list network 'vpnserver'
-	...
+  option name 'lan'
+  list network 'lan'
+  list network 'vpnserver'
+  ...
 
 config zone
-	option name 'wan'
-	list network 'wan'
-	list network 'vpnclient'
-	...
+  option name 'wan'
+  list network 'wan'
+  list network 'vpnclient'
+  ...
 
 config rule
-	option name 'Allow-OpenVPN-Inbound'
-	option target 'ACCEPT'
-	option src '*'
-	option proto 'tcp'
-	option dest_port '1194'
+  option name 'Allow-OpenVPN-Inbound'
+  option target 'ACCEPT'
+  option src '*'
+  option proto 'tcp'
+  option dest_port '1194'
 ```
 
 Relevant part of `/etc/config/openvpn`:
 
 ```text
 config openvpn 'vpnclient'
-	option client '1'
-	option dev_type 'tun'
-	option dev 'ovpnc0'
-	option proto 'udp'
-	option remote 'some.domain.com 1197' # DO NOT USE PORT 1194 for VPN Client
-	list pull_filter 'ignore "redirect-gateway"' # for OpenVPN 2.4 and later
-	option route_nopull '1' # for OpenVPN earlier than 2.4
-	...
+  option client '1'
+  option dev_type 'tun'
+  option dev 'ovpnc0'
+  option proto 'udp'
+  option remote 'some.domain.com 1197' # DO NOT USE PORT 1194 for VPN Client
+  list pull_filter 'ignore "redirect-gateway"' # for OpenVPN 2.4 and later
+  option route_nopull '1' # for OpenVPN earlier than 2.4
+  ...
 
 config openvpn 'vpnserver'
-	option port '1194'
-	option proto 'tcp'
-	option server '192.168.200.0 255.255.255.0'
-	...
+  option port '1194'
+  option proto 'tcp'
+  option server '192.168.200.0 255.255.255.0'
+  ...
 ```
 
 ## <a name='FootnotesKnownIssues'></a>Footnotes/Known Issues

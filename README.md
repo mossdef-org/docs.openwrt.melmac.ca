@@ -24,25 +24,25 @@ This is documentation for packages for OpenWrt devices created/maintained under 
         - [Add APK repository to Image Builder (jsDelivr)](#add-apk-repository-to-image-builder-jsdelivr)
     - [SDK](#sdk)
   - [Description of packages](#description-of-packages)
-    - [adblock-fast \& luci-app-adblock-fast](#adblock-fast--luci-app-adblock-fast)
-    - [https-dns-proxy \& luci-app-https-dns-proxy](#https-dns-proxy--luci-app-https-dns-proxy)
+    - [adblock-fast and luci-app-adblock-fast](#adblock-fast-and-luci-app-adblock-fast)
+    - [https-dns-proxy and luci-app-https-dns-proxy](#https-dns-proxy-and-luci-app-https-dns-proxy)
     - [luci-app-advanced-reboot](#luci-app-advanced-reboot)
     - [netclient](#netclient)
-    - [pbr \& luci-app-pbr](#pbr--luci-app-pbr)
+    - [pbr and luci-app-pbr](#pbr-and-luci-app-pbr)
   - [Description of outdated/obsolete packages](#description-of-outdatedobsolete-packages)
     - [antminer-monitor](#antminer-monitor)
-    - [fakeinternet \& luci-app-fakeinternet](#fakeinternet--luci-app-fakeinternet)
+    - [fakeinternet and luci-app-fakeinternet](#fakeinternet-and-luci-app-fakeinternet)
     - [libcurl with HTTP/3 and QUIC support](#libcurl-with-http3-and-quic-support)
     - [luci-app-easyflash](#luci-app-easyflash)
     - [luci-mod-alt-reboot](#luci-mod-alt-reboot)
     - [luci-theme-material-old](#luci-theme-material-old)
     - [nebula](#nebula)
-    - [simple-adblock \& luci-app-simple-adblock](#simple-adblock--luci-app-simple-adblock)
+    - [simple-adblock and luci-app-simple-adblock](#simple-adblock-and-luci-app-simple-adblock)
     - [slider-support](#slider-support)
-    - [vpnbypass \& luci-app-vpnbypass](#vpnbypass--luci-app-vpnbypass)
-    - [vpn-policy-routing \& luci-app-vpn-policy-routing](#vpn-policy-routing--luci-app-vpn-policy-routing)
-    - [wlanblinker \& luci-app-wlanblinker](#wlanblinker--luci-app-wlanblinker)
-    - [wireshark-helper \& luci-app-wireshark-helper](#wireshark-helper--luci-app-wireshark-helper)
+    - [vpnbypass and luci-app-vpnbypass](#vpnbypass-and-luci-app-vpnbypass)
+    - [vpn-policy-routing and luci-app-vpn-policy-routing](#vpn-policy-routing-and-luci-app-vpn-policy-routing)
+    - [wlanblinker and luci-app-wlanblinker](#wlanblinker-and-luci-app-wlanblinker)
+    - [wireshark-helper and luci-app-wireshark-helper](#wireshark-helper-and-luci-app-wireshark-helper)
   - [About MOSSDeF](#about-mossdef)
 
 <!-- vscode-markdown-toc-config
@@ -183,11 +183,11 @@ The packages source code is available in my packages source on [GitHub](https://
 
 ## <a name='Descriptionofpackages'></a>Description of packages
 
-### <a name='adblock-fastluci-app-adblock-fast'></a>adblock-fast & luci-app-adblock-fast
+### <a name='adblock-fastluci-app-adblock-fast'></a>adblock-fast and luci-app-adblock-fast
 
 This service provides lightweight and very fast dnsmasq-based ad blocking. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/adblock-fast/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/adblock-fast/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/adblock-fast-ad-blocking-service-for-dnsmasq-smartdns-and-unbound/) for further information. This package is an improved version of [simple-adblock](#simple-adblock--luci-app-simple-adblock).
 
-### <a name='https-dns-proxyluci-app-https-dns-proxy'></a>https-dns-proxy & luci-app-https-dns-proxy
+### <a name='https-dns-proxyluci-app-https-dns-proxy'></a>https-dns-proxy and luci-app-https-dns-proxy
 
 This is a lean RFC8484-compatible DNS-over-HTTPS (DoH) proxy service which supports DoH servers ran by AdGuard, CleanBrowsing, Cloudflare, Google, ODVR (nic.cz) and Quad9. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/https-dns-proxy/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/https-dns-proxy/README.md) for further information.
 
@@ -199,7 +199,7 @@ This package enables Web UI for reboot to another partition functionality on sup
 
 Netclient is an automated WireGuard Management Client. Netclient is a client application for the [Netmaker](https://github.com/gravitl/netmaker) networks. [Netclient is developed by Gravitl](https://github.com/gravitl/netclient). Please see the README at [GitHub](https://docs.openwrt.melmac.ca/netclient/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/netclient/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/netclient-the-client-for-netmaker-networks/) for further information.
 
-### <a name='pbrluci-app-pbr'></a>pbr & luci-app-pbr
+### <a name='pbrluci-app-pbr'></a>pbr and luci-app-pbr
 
 This service can be used to enable policy-based routing for WAN/WAN6 interfaces and multiple VPN tunnels. Supported VPN protocols include: L2TP, Openconnect, OpenVPN, Softether and Wireguard. Policies can be based on domain names, IP addresses, ports or any combination of the above. This service supports policies for both outgoing and incoming traffic to target specific interfaces/tunnels. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/pbr/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/pbr/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/policy-based-routing-pbr-package-discussion/) for further information.
 
@@ -209,7 +209,7 @@ This service can be used to enable policy-based routing for WAN/WAN6 interfaces 
 
 This service can be used to monitor local BITMAIN Antminers. This is just the wrapper for [Antminer Monitor python app](https://github.com/anselal/antminer-monitor). **WARNING**: Requires a router with a lot of flash, 128Mb recommended. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/antminer-monitor/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/antminer-monitor/README.md) for further information.
 
-### <a name='fakeinternetluci-app-fakeinternet'></a>fakeinternet & luci-app-fakeinternet
+### <a name='fakeinternetluci-app-fakeinternet'></a>fakeinternet and luci-app-fakeinternet
 
 This service can be used to fake internet connectivity for local devices.
 Can be used on routers with no internet access to suppress warnings on local devices on no internet connectivity. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/fakeinternet/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/fakeinternet/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/fakeinternet-service-package-wip/) for further information.
@@ -234,7 +234,7 @@ This package brings back the old button styles to the `luci-theme-material` on O
 
 Nebula is a scalable overlay networking tool with a focus on performance, simplicity and security. It lets you seamlessly connect computers anywhere in the world. [Nebula is being developed by Slack](https://github.com/slackhq/nebula). Please see the README at [GitHub](https://docs.openwrt.melmac.ca/nebula/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/nebula/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/slacks-nebula-on-openwrt-discussion-thread/) for further information.
 
-### <a name='simple-adblockluci-app-simple-adblock'></a>simple-adblock & luci-app-simple-adblock
+### <a name='simple-adblockluci-app-simple-adblock'></a>simple-adblock and luci-app-simple-adblock
 
 This service provides lightweight and very fast dnsmasq-based ad blocking. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/simple-adblock/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/simple-adblock/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/simple-adblock-fast-lightweight-and-fully-uci-luci-configurable-ad-blocking/1327) for further information. This package has been obsoleted by [adblock-fast](#adblock-fast--luci-app-adblock-fast).
 
@@ -242,19 +242,19 @@ This service provides lightweight and very fast dnsmasq-based ad blocking. Pleas
 
 This package enables switching between `Router`, `Access Point` and `Wireless Repeater` modes of operation for supported routers equipped with slider switch. It also sets the correct `current mode` setting for the `WLAN Blinker` service (README at [GitHub](https://docs.openwrt.melmac.ca/wlanblinker/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/wlanblinker/README.md)). Please see the README at [GitHub](https://docs.openwrt.melmac.ca/slider-support/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/slider-support/README.md) for further information.
 
-### <a name='vpnbypassluci-app-vpnbypass'></a>vpnbypass & luci-app-vpnbypass
+### <a name='vpnbypassluci-app-vpnbypass'></a>vpnbypass and luci-app-vpnbypass
 
 This service can be used to enable split tunneling for outgoing traffic for a single OpenVPN tunnel used as the default gateway. Supports accessing domains, IP ranges outside of your OpenVPN tunnel (bypassing OpenVPN tunnel) over IPv4. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/vpnbypass/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/vpnbypass/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/vpn-bypass-split-tunneling-service-luci-ui/) for further information. This package has been obsoleted by [pbr](#pbr--luci-app-pbr).
 
-### <a name='vpn-policy-routingluci-app-vpn-policy-routing'></a>vpn-policy-routing & luci-app-vpn-policy-routing
+### <a name='vpn-policy-routingluci-app-vpn-policy-routing'></a>vpn-policy-routing and luci-app-vpn-policy-routing
 
 This service can be used to enable policy-based routing for WAN/WAN6 interfaces and multiple VPN tunnels. Supported VPN protocols include: L2TP, Openconnect, OpenVPN and Wireguard. Policies can be based on domain names, IP addresses, ports or any combination of the above. This service supports policies for both outgoing and incoming traffic to target specific interfaces/tunnels. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/vpn-policy-routing/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/vpn-policy-routing/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/vpn-policy-based-routing-web-ui-discussion/) for further information. This package has been obsoleted by [pbr](#pbr--luci-app-pbr).
 
-### <a name='wlanblinkerluci-app-wlanblinker'></a>wlanblinker & luci-app-wlanblinker
+### <a name='wlanblinkerluci-app-wlanblinker'></a>wlanblinker and luci-app-wlanblinker
 
 This service can be used to indicate WLAN status by blinking the unused LED. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/wlanblinker/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/wlanblinker/README.md) for further information.
 
-### <a name='wireshark-helperluci-app-wireshark-helper'></a>wireshark-helper & luci-app-wireshark-helper
+### <a name='wireshark-helperluci-app-wireshark-helper'></a>wireshark-helper and luci-app-wireshark-helper
 
 This service can be used to configure router to sniff packets to/from monitored device on the device running Wireshark app. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/wireshark-helper/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/wireshark-helper/README.md) for further information.
 
