@@ -14,7 +14,7 @@ This service can be used to indicate WLAN status by blinking the unused LED.
 
 ## How to install
 
-Please make sure that the [requirements](#requirements) are satisfied and install `wlanblinker` and `luci-app-wlanblinker` from Web UI or connect to your router via ssh and run the following commands:
+Please make sure that the requirements are satisfied and install `wlanblinker` and `luci-app-wlanblinker` from Web UI or connect to your router via ssh and run the following commands:
 
 ```sh
 opkg update

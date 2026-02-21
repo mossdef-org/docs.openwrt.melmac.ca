@@ -4,7 +4,6 @@
 
 # Policy-Based Routing OpenWrt Package Documentation
 
-<!-- vscode-markdown-toc -->
 
 - [OpenWrt 23.05.0 release and this package](#OpenWrt23.05.0releaseandthispackage)
 - [OpenWrt 22.03.0 release and this package](#OpenWrt22.03.0releaseandthispackage)
@@ -90,11 +89,6 @@
   - [First Troubleshooting Step](#FirstTroubleshootingStep)
 - [Thanks](#Thanks)
 
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
 
 ## <a name='OpenWrt23.05.0releaseandthispackage'></a>OpenWrt 23.05.0 release and this package
 

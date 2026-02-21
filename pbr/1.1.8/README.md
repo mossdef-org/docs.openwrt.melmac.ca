@@ -9,7 +9,6 @@
 [![Web UI](https://img.shields.io/badge/Web_UI-Available-blue)](https://docs.openwrt.melmac.net/pbr/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-lightgrey)](https://github.com/stangri/pbr/blob/master/LICENSE)
 
-<!-- vscode-markdown-toc -->
 
 - [Notable version changes](#Notableversionchanges)
   - [Relevant `pbr` version](#Relevantpbrversion)
@@ -97,11 +96,6 @@
   - [Warning: Internal Version Mismatch](#Warning:InternalVersionMismatch)
 - [Thanks](#Thanks)
 
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
 
 ## <a name='Notableversionchanges'></a>Notable version changes
 

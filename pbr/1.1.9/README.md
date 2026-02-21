@@ -9,7 +9,6 @@
 [![Web UI](https://img.shields.io/badge/Web_UI-Available-blue)](https://docs.openwrt.melmac.net/pbr/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-lightgrey)](https://github.com/stangri/pbr/blob/master/LICENSE)
 
-<!-- vscode-markdown-toc -->
 
 - [Policy-Based Routing OpenWrt Package Documentation](#policy-based-routing-openwrt-package-documentation)
 	- [Notable version changes](#notable-version-changes)
@@ -99,11 +98,6 @@
 		- [Warning: Incompatible DHCP Option 6](#warning-incompatible-dhcp-option-6)
 	- [Thanks](#thanks)
 
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
 
 ## <a name='Notableversionchanges'></a>Notable version changes
 

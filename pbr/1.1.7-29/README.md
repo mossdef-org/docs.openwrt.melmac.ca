@@ -5,7 +5,6 @@
 
 # Policy-Based Routing OpenWrt Package Documentation
 
-<!-- vscode-markdown-toc -->
 
 - [Notable version changes](#Notableversionchanges)
   - [Relevant `pbr` version](#Relevantpbrversion)
@@ -88,11 +87,6 @@
   - [Warning: Please set 'dhcp.lan.force=1'](#Warning:Pleasesetdhcp.lan.force1)
 - [Thanks](#Thanks)
 
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
 
 ## <a name='Notableversionchanges'></a>Notable version changes
 

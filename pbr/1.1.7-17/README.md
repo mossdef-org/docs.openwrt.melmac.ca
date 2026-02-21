@@ -5,7 +5,6 @@
 
 # Policy-Based Routing OpenWrt Package Documentation
 
-<!-- vscode-markdown-toc -->
 
 - [Notable version changes](#Notableversionchanges)
   - [Version 1.1.7](#Version1.1.7)
@@ -83,11 +82,6 @@
 - [Donate](#Donate)
 - [Thanks](#Thanks)
 
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
 
 ## <a name='Notableversionchanges'></a>Notable version changes
 

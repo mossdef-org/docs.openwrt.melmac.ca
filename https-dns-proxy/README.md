@@ -9,7 +9,6 @@
 ![Resolvers](https://img.shields.io/badge/Resolvers-40%2B%20Built--in-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-<!-- vscode-markdown-toc -->
 
 - [DNS Over HTTPS Proxy (https-dns-proxy)](#dns-over-https-proxy-https-dns-proxy)
   - [Description](#description)
@@ -41,11 +40,6 @@
   - [Getting Help](#getting-help)
   - [Thanks](#thanks)
 
-<!-- vscode-markdown-toc-config
-  numbering=false
-  autoSave=true
-  /vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
 
 ## Description
 

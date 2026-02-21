@@ -4,7 +4,6 @@
 
 This is documentation for packages for OpenWrt devices created/maintained under the Melmac Open Source Software Development Foundation (MOSSDeF). While some of these are packages are already available from official OpenWrt release/snapshots repositories/feeds, [the ipk packages repo](https://repo.openwrt.melmac.ca)/[the apk packages repo](https://apk.openwrt.melmac.ca) usually contain newer versions. You can also browse/check-out the [source code](https://source.openwrt.melmac.ca).
 
-<!-- vscode-markdown-toc -->
 
 - [The openwrt.melmac.ca packages documentation](#the-openwrtmelmacca-packages-documentation)
   - [How to use](#how-to-use)
@@ -45,11 +44,6 @@ This is documentation for packages for OpenWrt devices created/maintained under 
     - [wireshark-helper and luci-app-wireshark-helper](#wireshark-helper-and-luci-app-wireshark-helper)
   - [About MOSSDeF](#about-mossdef)
 
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
 
 ## <a name='Howtouse'></a>How to use
 
@@ -185,7 +179,7 @@ The packages source code is available in my packages source on [GitHub](https://
 
 ### <a name='adblock-fastluci-app-adblock-fast'></a>adblock-fast and luci-app-adblock-fast
 
-This service provides lightweight and very fast dnsmasq-based ad blocking. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/adblock-fast/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/adblock-fast/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/adblock-fast-ad-blocking-service-for-dnsmasq-smartdns-and-unbound/) for further information. This package is an improved version of [simple-adblock](#simple-adblock--luci-app-simple-adblock).
+This service provides lightweight and very fast dnsmasq-based ad blocking. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/adblock-fast/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/adblock-fast/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/adblock-fast-ad-blocking-service-for-dnsmasq-smartdns-and-unbound/) for further information. This package is an improved version of [simple-adblock](#simple-adblockluci-app-simple-adblock).
 
 ### <a name='https-dns-proxyluci-app-https-dns-proxy'></a>https-dns-proxy and luci-app-https-dns-proxy
 
@@ -236,7 +230,7 @@ Nebula is a scalable overlay networking tool with a focus on performance, simpli
 
 ### <a name='simple-adblockluci-app-simple-adblock'></a>simple-adblock and luci-app-simple-adblock
 
-This service provides lightweight and very fast dnsmasq-based ad blocking. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/simple-adblock/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/simple-adblock/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/simple-adblock-fast-lightweight-and-fully-uci-luci-configurable-ad-blocking/1327) for further information. This package has been obsoleted by [adblock-fast](#adblock-fast--luci-app-adblock-fast).
+This service provides lightweight and very fast dnsmasq-based ad blocking. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/simple-adblock/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/simple-adblock/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/simple-adblock-fast-lightweight-and-fully-uci-luci-configurable-ad-blocking/1327) for further information. This package has been obsoleted by [adblock-fast](#adblock-fastluci-app-adblock-fast).
 
 ### <a name='slider-support'></a>slider-support
 
@@ -244,11 +238,11 @@ This package enables switching between `Router`, `Access Point` and `Wireless Re
 
 ### <a name='vpnbypassluci-app-vpnbypass'></a>vpnbypass and luci-app-vpnbypass
 
-This service can be used to enable split tunneling for outgoing traffic for a single OpenVPN tunnel used as the default gateway. Supports accessing domains, IP ranges outside of your OpenVPN tunnel (bypassing OpenVPN tunnel) over IPv4. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/vpnbypass/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/vpnbypass/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/vpn-bypass-split-tunneling-service-luci-ui/) for further information. This package has been obsoleted by [pbr](#pbr--luci-app-pbr).
+This service can be used to enable split tunneling for outgoing traffic for a single OpenVPN tunnel used as the default gateway. Supports accessing domains, IP ranges outside of your OpenVPN tunnel (bypassing OpenVPN tunnel) over IPv4. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/vpnbypass/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/vpnbypass/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/vpn-bypass-split-tunneling-service-luci-ui/) for further information. This package has been obsoleted by [pbr](#pbrluci-app-pbr).
 
 ### <a name='vpn-policy-routingluci-app-vpn-policy-routing'></a>vpn-policy-routing and luci-app-vpn-policy-routing
 
-This service can be used to enable policy-based routing for WAN/WAN6 interfaces and multiple VPN tunnels. Supported VPN protocols include: L2TP, Openconnect, OpenVPN and Wireguard. Policies can be based on domain names, IP addresses, ports or any combination of the above. This service supports policies for both outgoing and incoming traffic to target specific interfaces/tunnels. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/vpn-policy-routing/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/vpn-policy-routing/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/vpn-policy-based-routing-web-ui-discussion/) for further information. This package has been obsoleted by [pbr](#pbr--luci-app-pbr).
+This service can be used to enable policy-based routing for WAN/WAN6 interfaces and multiple VPN tunnels. Supported VPN protocols include: L2TP, Openconnect, OpenVPN and Wireguard. Policies can be based on domain names, IP addresses, ports or any combination of the above. This service supports policies for both outgoing and incoming traffic to target specific interfaces/tunnels. Please see the README at [GitHub](https://docs.openwrt.melmac.ca/vpn-policy-routing/)/[jsDelivr](https://cdn.jsdelivr.net/gh/stangri/docs.openwrt.melmac.ca/vpn-policy-routing/README.md) and [OpenWrt Forum Thread](https://forum.openwrt.org/t/vpn-policy-based-routing-web-ui-discussion/) for further information. This package has been obsoleted by [pbr](#pbrluci-app-pbr).
 
 ### <a name='wlanblinkerluci-app-wlanblinker'></a>wlanblinker and luci-app-wlanblinker
 

@@ -2,7 +2,6 @@
 
 # There's OpenWrt and then there's "OpenWrt"
 
-<!-- vscode-markdown-toc -->
 
 - [What is OpenWrt?](#WhatisOpenWrt)
 - [How is OpenWrt different from "OpenWrt"?](#HowisOpenWrtdifferentfromOpenWrt)
@@ -11,11 +10,6 @@
 - [What do I gain by installing official OpenWrt on my device?](#WhatdoIgainbyinstallingofficialOpenWrtonmydevice)
 - [What do you mean by support?](#Whatdoyoumeanbysupport)
 
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
 
 ## <a name='WhatisOpenWrt'></a>What is OpenWrt?
 

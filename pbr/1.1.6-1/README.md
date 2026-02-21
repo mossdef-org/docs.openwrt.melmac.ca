@@ -4,7 +4,6 @@
 
 # Policy-Based Routing OpenWrt Package Documentation
 
-<!-- vscode-markdown-toc -->
 
 - [The `pbr` version `1.1.6` announcement](#Thepbrversion1.1.6announcement)
 - [OpenWrt 23.05 release and this package](#OpenWrt23.05releaseandthispackage)
@@ -92,11 +91,6 @@
 - [Donate](#Donate)
 - [Thanks](#Thanks)
 
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
 
 ## <a name='Thepbrversion1.1.6announcement'></a>The `pbr` version `1.1.6` announcement
 
