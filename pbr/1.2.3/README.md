@@ -1147,33 +1147,16 @@ Using `pbr` together with another policy routing service on the same system may 
 
 General discussion of this package is happening at the [OpenWrt forum thread](https://forum.openwrt.org/t/policy-based-routing-pbr-package-discussion/140639).
 
-If things are not working as intended, with pbr versions 1.2.1 and higher, please this command:
+If things are not working as intended, with pbr versions 1.2.1 and higher, please run this command:
 
 ```sh
 service pbr support
 ```
 
-This will print all the diagnostic information you need to include with your post while masking sensitive information.
-
-If you have an older version of pbr which doesn't implement `support` command, please refer to the README for that specific version or first set counters to 1 and verbosity to 2 by running these commands:
+This will print all the diagnostic information you need to include with your post while masking sensitive information. You can also use `-p` to automatically upload the output to paste.ee:
 
 ```sh
-uci set pbr.config.nft_rule_counter='1'
-uci set pbr.config.nft_set_counter='1'
-uci set pbr.config.verbosity='2'
-uci commit pbr
-```
-
-and then run the following commands and include their output (you can and should mask sensitive information) in your post:
-
-```sh
-ubus call system board
-uci export dhcp
-uci export firewall
-uci export network
-uci export pbr
-/etc/init.d/pbr restart
-/etc/init.d/pbr status -d
+service pbr support -p
 ```
 
 ## First Troubleshooting Step
