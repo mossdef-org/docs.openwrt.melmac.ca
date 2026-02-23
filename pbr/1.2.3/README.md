@@ -119,6 +119,7 @@ This README is relevant for the `pbr` version 1.2.3. If you're looking for the R
 - Most of the code transitioned to ucode.
 - Support for custom user scripts in ucode, using pbr API.
 - This release will include support for mwan4 integration. More information on [mwan4 integration](#mwan4-integration) below.
+- The `status` command now shows a brief summary by default (routing mode and nft file paths). Use `-d` for detailed diagnostic output.
 
 ### Version 1.2.2
 
@@ -1172,7 +1173,7 @@ uci export firewall
 uci export network
 uci export pbr
 /etc/init.d/pbr restart
-/etc/init.d/pbr status
+/etc/init.d/pbr status -d
 ```
 
 ## First Troubleshooting Step
