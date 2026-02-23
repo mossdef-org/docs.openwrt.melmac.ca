@@ -415,7 +415,7 @@ A ucode user script should always check the `api.compat` property before proceed
 
 ```javascript
 return function(api) {
-	if (!api.compat || api.compat < 27) return;
+	if (!api.compat || api.compat < 29) return;
 
 	// your logic here
 };
@@ -431,21 +431,25 @@ The `api` object provides the following properties and methods:
 | `api.nft4(rule_line)`          | Same as `api.nft()` but intended for IPv4-specific rules. The command is always added.                                                                                                                                                |
 | `api.nft6(rule_line)`          | Same as `api.nft()` but intended for IPv6-specific rules. The command is only added when [`ipv6_enabled`](#ipv6_enabled) is set to `1`; otherwise the call is silently ignored.                                                        |
 | `api.download(url)`            | Downloads the content at the given URL using the system's available downloader (`curl`, `wget`, or `uclient-fetch`). Returns the content as a string on success, or `null` on failure.                                                 |
-| `api.get_target_chain(iface)`  | Returns the nft chain name for the given interface (e.g., for use in `goto` rules). When using mwan4 integration, returns the mwan4 strategy chain name instead. Returns `null` if the interface is not found.                         |
+| `api.marking_chain(iface)`     | Returns the nft marking chain name for the given interface (e.g., for use in `goto` rules). Works with standard, netifd, and mwan4 interfaces. Returns `null` if the interface is not found.                                          |
+| `api.strategy_chain(strategy)` | Returns the nft chain name for the given mwan4 strategy. Returns `null` if the strategy is not found.                                                                                                                                 |
+| `api.nftset(iface, family)`    | Returns the nftset name for the given interface and address family (`'4'` or `'6'`). Use this instead of hardcoding set names.                                                                                                        |
 
 Example of adding elements to user sets:
 
 ```javascript
 return function(api) {
-	if (!api.compat || api.compat < 27) return;
+	if (!api.compat || api.compat < 29) return;
 
 	let iface = 'wan';
+	let set4 = api.nftset(iface, '4');
+	let set6 = api.nftset(iface, '6');
 
 	// Add an IPv4 address to the destination user set
-	api.nft4('add element ' + api.table + ' pbr_' + iface + '_4_dst_ip_user { 203.0.113.0/24 }');
+	api.nft4('add element ' + api.table + ' ' + set4 + ' { 203.0.113.0/24 }');
 
 	// Add an IPv6 address to the destination user set (only if IPv6 is enabled)
-	api.nft6('add element ' + api.table + ' pbr_' + iface + '_6_dst_ip_user { 2001:db8::/32 }');
+	api.nft6('add element ' + api.table + ' ' + set6 + ' { 2001:db8::/32 }');
 };
 ```
 
