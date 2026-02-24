@@ -134,7 +134,7 @@ This package provides flexible, rule-based routing for OpenWrt — allowing you 
 - Route by IP, MAC address, port, protocol, or domain
 - Supports multiple interfaces: WAN, OpenVPN, WireGuard, tunnels
 - Optional LuCI Web UI for rule management and status display
-- Works with `dnsmasq`, `unbound`, `smartdns`
+- Works with `dnsmasq-full` for nft set domain lookup
 - Includes fallback and health check logic for resolver stability
 
 ## <a name='Features'></a>Features
@@ -146,6 +146,7 @@ This package provides flexible, rule-based routing for OpenWrt — allowing you 
 - OpenConnect tunnels supported (with protocol names openconnect\*).
 - OpenVPN tunnels supported (with device names tun\*).[<sup>#1</sup>](#footnote1) [<sup>#2</sup>](#footnote2)
 - PPTP tunnels supported (with protocol names pptp\*).
+- NetBird tunnels supported (with device name wt\*).
 - Tailscale tunnels supported (with device name tailscale\*).
 - Tor tunnels supported in nft mode only (interface name must match tor).
 - Wireguard tunnels supported (with protocol names wireguard\*).
@@ -309,7 +310,7 @@ Since this release only supports `nft` riles and `nft` `sets`, it is not recomme
 
 ### <a name='Requirements'></a>Requirements
 
-Default builds of OpenWrt 23.05 and later are fully compatible with `pbr` and require no additional packages. If you're using a non-standard build, you may have to install the following packages on your router: `resolveip`, `ip-full` (or a `busybox` built with `ip` support).
+Default builds of OpenWrt 23.05 and later are fully compatible with `pbr` and require no additional packages. If you're using a non-standard build, you may have to install the following packages on your router: `resolveip`, `ip-full`.
 
 To satisfy the requirements, connect to your router via ssh and run the following commands:
 
