@@ -304,6 +304,7 @@ If you want to create your own custom user files, please refer to [Processing Cu
 ### Strict Enforcement
 
 - Supports strict policy enforcement, even if the policy interface is down -- resulting in network being unreachable for specific policy (enabled by default).
+- Stops forwarded traffic during (re)starts and reloads to minimise potential WAN leaks. Note: This only stops forwarded traffic between LAN and WAN; the router itself can still connect to the internet. 
 
 ## Customization
 
@@ -477,7 +478,7 @@ As per screenshots above, in the Web UI the `pbr` configuration is split into `B
 |                | <a name="interface_name_dscp"></a>{interface_name}\_dscp           | integer (1-63) |                | Dynamically enables [DSCP-tag based policies](#dscp-tag-based-policies) for the specified interface, allowing traffic prioritization based on DSCP tags for that specific uplink/WAN or tunnel/VPN connection.                                                                                                                   |
 | Hidden         | <a name="procd_boot_trigger_delay"></a>procd_boot_trigger_delay    | integer        | 5000           | Sets the delay in milliseconds before the service reacts to interface boot-up triggers, allowing other dependent services or slow interfaces to fully initialize first.                                                                                                                                                        |
 | Hidden         | <a name="procd_lan_device"></a><a name="lan_device"></a>lan_device | list           | br-lan         | Overrides the default `br-lan` device detection, telling the service which physical or logical device represents your LAN for local network identification.                                                                                                                                                                    |
-| Hidden         | <a name="procd_reload_delay"></a>procd_reload_delay                | integer        | 0              | Introduces a pause (in seconds) during service reload, which can help mitigate race conditions when multiple network configuration changes happen simultaneously.                                                                                                                                                              |
+| Hidden         | <a name="procd_reload_delay"></a>procd_reload_delay                | integer        | 0              | Delays, in seconds, the start of the triggers set on all supported interfaces and executed on service reloads and configuration changes of PBR and Network. If interfaces are slow to come up (e.g., OpenVPN), if they depend on Network configuration changes, or if you experience race conditions, increasing this value to 5 or higher may be necessary.                                                                                                                                                              |
 | Hidden         | <a name="uplink_interface"></a>uplink_interface                    | string         | wan            | Explicitly defines the logical OpenWrt interface name used for upstream gateway calculations, which is necessary only if your primary IPv4 WAN interface is not named 'wan'.                                                                                                                                                   |
 | Hidden         | <a name="uplink_interface6"></a>uplink_interface6                  | string         | wan6           | Explicitly defines the logical OpenWrt interface name used for the upstream IPv6 gateway, necessary if your IPv6 WAN interface is not named 'wan6'.                                                                                                                                                                            |
 | Hidden         | <a name="nft_rule_counter"></a>nft_rule_counter                    | boolean        | 0              | Enables packet counting for all generated `nft` rules, providing statistics on how many packets matched each specific policy rule. See [nftables wiki](https://wiki.nftables.org/wiki-nftables/index.php/Sets) for details.                                                                                                    |
@@ -704,13 +705,14 @@ config pbr 'config'
 
 The recommended network/firewall settings are below.
 
-Relevant part of `/etc/config/network` (**DO NOT** modify default OpenWrt network settings for either `wan` or `lan`):
+For 25.12 and earlier branches using `luci-app-openvpn` the relevant part of `/etc/config/network` (**DO NOT** modify default OpenWrt network settings for either `wan` or `lan`):
 
 ```text
 config interface 'vpnclient'
   option proto 'none'
   option device 'ovpnc0'
 ```
+For master branch using `luci-proto-vpn` you only need to set the device option (`option dev`) in the OpenVPN interface.
 
 Relevant part of `/etc/config/firewall`:
 
