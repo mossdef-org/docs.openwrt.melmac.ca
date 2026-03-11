@@ -87,7 +87,8 @@
     - [A Word About Cloudflare's 1.1.1.1 App](#a-word-about-cloudflares-1111-app)
     - [A Word About DNS-over-HTTPS](#a-word-about-dns-over-https)
     - [A Word About HTTP/3 (QUIC)](#a-word-about-http3-quic)
-    - [A Word About IPv6 Routing](#a-word-about-ipv6-routing)
+    - [A Word about a Modem interface alongside a WAN interface](#a-word-about-a-modem-interface-alongside-a-wan-interface)
+    - [A Word about IPv6 and PPPoE](#a-word-about-ipv6-and-pppoe)
     - [A Word About Routing Netflix/Amazon Prime/Hulu Traffic](#a-word-about-routing-netflixamazon-primehulu-traffic)
       - [Routing Netflix/Amazon Prime/Hulu Traffic via VPN Tunnel](#routing-netflixamazon-primehulu-traffic-via-vpn-tunnel)
       - [Routing Netflix/Amazon Prime/Hulu Traffic via WAN](#routing-netflixamazon-primehulu-traffic-via-wan)
@@ -304,7 +305,7 @@ If you want to create your own custom user files, please refer to [Processing Cu
 ### Strict Enforcement
 
 - Supports strict policy enforcement, even if the policy interface is down -- resulting in network being unreachable for specific policy (enabled by default).
-- Stops forwarded traffic during (re)starts and reloads to minimise potential WAN leaks. Note: This only stops forwarded traffic between LAN and WAN; the router itself can still connect to the internet. 
+- Stops forwarded traffic during (re)starts and reloads to minimise potential WAN leaks. Note: This only stops forwarded traffic between LAN and WAN; the router itself can still connect to the internet. If the router is disrupted (e.g., power loss or crash) while PBR is executing, forwarding may remain disabled. In this case, forwarding can be re-enabled manually with `service pbr enable_forward`.
 
 ## Customization
 
@@ -1021,9 +1022,13 @@ Some browsers, like [Mozilla Firefox](https://support.mozilla.org/en-US/kb/firef
 
 If you want to target traffic using HTTP/3 protocol, you can use the `AUTO` as the protocol (the policy will be either protocol-agnostic or `TCP/UDP`) or explicitly use `UDP` as a protocol.
 
-### A Word About IPv6 Routing
+### A Word about a Modem interface alongside a WAN interface
 
-Due to the nature of IPv6, it's not supposed to be routed as IPv4 is with this package. A fellow user has graciously contributed a [gist detailing their experience to get IPv6 routing working](https://gist.github.com/aliicex/3bd8413029b1f728c1f00bc1ac0e98b4).
+Adding an additional interface (e.g., a modem interface) to `wan/wan6` may cause issues if it is enabled during boot. If this occurs, do not bring up the additional interface at boot. Instead, enable it manually or via a hotplug script after the system has started.
+
+###  A Word about IPv6 and PPPoE
+
+If you encounter problems with IPv6 when using PPPoE, use [`option ipv6 '1'`](https://openwrt.org/docs/guide-user/network/ipv6/configuration#ppp-based_protocols_and_option_ipv6) and create your own `wan6` interface.
 
 ### A Word About Routing Netflix/Amazon Prime/Hulu Traffic
 
