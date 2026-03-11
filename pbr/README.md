@@ -1028,7 +1028,7 @@ Adding an additional interface (e.g., a modem interface) to `wan/wan6` may cause
 
 ###  A Word about IPv6 and PPPoE
 
-If you encounter problems with IPv6 when using PPPoE, use [`option ipv6 '1''`](https://openwrt.org/docs/guide-user/network/ipv6/configuration#ppp-based_protocols_and_option_ipv6) and create your own `wan6` interface.
+If you encounter problems with IPv6 when using PPPoE, use [`option ipv6 '1'`](https://openwrt.org/docs/guide-user/network/ipv6/configuration#ppp-based_protocols_and_option_ipv6) and create your own `wan6` interface.
 
 ### A Word About Routing Netflix/Amazon Prime/Hulu Traffic
 
