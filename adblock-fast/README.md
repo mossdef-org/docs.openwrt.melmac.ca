@@ -308,6 +308,23 @@ For most of the [DNS Resolver Options](#dns-resolver-option) to work, your local
       option netmask '255.255.255.0'
     ```
 
+## Chrome Extension
+
+A Google Chrome extension is available to control adblock-fast (start, stop, pause) directly from the browser toolbar.
+
+### Install
+
+- [Download from GitHub Releases](https://github.com/mossdef-org/chrome-adblock-fast/releases)
+<!-- - [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/TODO) -->
+
+To install from GitHub Releases, download the zip file, unzip it, then load it as an unpacked extension in `chrome://extensions` (enable Developer mode first).
+
+### Setup
+
+1. In LuCI, go to **Services &rarr; AdBlock-Fast &rarr; Advanced Configuration**.
+2. Copy the **Remote Access Token**.
+3. Click the extension icon in Chrome, open **Settings**, and paste the token as the password.
+
 ## Documentation / Discussion
 
 Please head to [OpenWrt Forum](https://forum.openwrt.org/t/adblock-fast-ad-blocking-service-for-dnsmasq-smartdns-and-unbound/) for discussion of this package.
