@@ -255,3 +255,24 @@ mwan4 generates persistent nftables rule files that are loaded by fw4 via the `r
 
 For full mwan3 configuration documentation (still largely applicable):
 https://openwrt.org/docs/guide-user/network/wan/multiwan/mwan3#mwan3_configuration
+
+## Getting Help
+
+If things are not working as intended, please run the following commands and include their output in your post/issue (you can mask sensitive information):
+
+```sh
+ubus call system board
+uci export network
+uci export mwan4
+mwan4 status
+nft list table inet fw4
+```
+
+mwan4 integrates with firewall4 and writes its rules, chains and sets (all `mwan4_`-prefixed) into the shared `inet fw4` table — that's why `nft list table inet fw4` is the relevant dump rather than a separate mwan4 table.
+
+If the issue is specific to interface tracking or failover, also include:
+
+```sh
+ls /var/run/mwan4/
+logread -e mwan4 | tail -100
+```
