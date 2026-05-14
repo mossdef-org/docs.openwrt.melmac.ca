@@ -103,6 +103,7 @@
     - [Warning: Please set 'dhcp.lan.force=1'](#warning-please-set-dhcplanforce1)
     - [Warning: Internal Version Mismatch](#warning-internal-version-mismatch)
     - [Warning: Incompatible DHCP Option 6](#warning-incompatible-dhcp-option-6)
+    - [Warning: Unknown Gateway for device 'XX'](#warning-unknown-gateway-for-device-xx)
   - [Thanks](#thanks)
 
 
@@ -1178,6 +1179,12 @@ If you have the matching versions of the `pbr` and `luci-app-pbr` installed you 
 ### Warning: Incompatible DHCP Option 6
 
 The `pbr` package now checks for incompatible DHCP Option 6 on start if resolver_set is used.
+
+### Warning: Unknown Gateway for device 'XX'
+
+This usually is a transient warning and related to `WARNING: Uplink/WAN interface is still down, going back to boot mode`.  
+When an interface is not up there is no gateway, normally PBR will restart if the interface is up and the warning should be gone.  
+So you can ignore this warning if PBR restarts afterwards and the warning is gone.
 
 ## Thanks
 
